@@ -3,11 +3,13 @@ package com.example.userauthenticationregistration
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ArrayAdapter
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.userauthenticationregistration.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
 import java.io.IOException
+import org.json.JSONArray
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -27,8 +29,12 @@ class SignUpActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val dataString = this.readJsonAsset("countries.json")
-        Toast.makeText(this,dataString,Toast.LENGTH_LONG).show()
+        val jsonAsset = this.readJsonAsset("countries.json")
+        val countriesResult = countriesList(jsonAsset)
+        val countryArray = countriesResult.split(",").toTypedArray()
+        val countiesArrayAdapter = ArrayAdapter(this, R.layout.drop_down_item, countryArray)
+        binding.countryValue.setAdapter(countiesArrayAdapter)
+
         binding.button.setOnClickListener {
             val email = binding.emailEt.text.toString()
             val pass = binding.passET.text.toString()
@@ -67,4 +73,23 @@ fun Context.readJsonAsset(fileName: String): String {
     inputStream.read(buffer)
     inputStream.close()
     return String(buffer, Charsets.UTF_8)
+}
+
+
+fun countriesList(jsonData: String): String {
+    val jsonArray = JSONArray(jsonData)
+    val resCountryList = mutableListOf<String>()
+
+    for (i in 0 until jsonArray.length()) {
+        val jsonObject = jsonArray.getJSONObject(i)
+        val keys = jsonObject.keys()
+
+        while (keys.hasNext()) {
+            val key = keys.next() as String
+            val innerObject = jsonObject.getJSONObject(key)
+            val country = innerObject.getString("country")
+            resCountryList.add(country)
+        }
+    }
+    return resCountryList.toString()
 }

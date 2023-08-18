@@ -1,9 +1,5 @@
-{
-  "status": "OK",
-  "status-code": 200,
-  "version": "1.0",
-  "access": "public",
-  "data": {
+[
+  {
     "DZ": {
       "country": "Algeria",
       "region": "Africa"
@@ -405,4 +401,4 @@
       "region": "Central America"
     }
   }
-}
+]
