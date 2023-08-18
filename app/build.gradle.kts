@@ -52,7 +52,6 @@ dependencies {
     implementation(platform("com.google.firebase:firebase-bom:32.2.2"))
 
     // Spinner
-    implementation("com.github.skydoves:powerspinner:1.2.7")
 
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")

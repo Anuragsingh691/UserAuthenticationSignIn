@@ -97,31 +97,28 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/confirmPasswordLayout" />
 
-            <com.skydoves.powerspinner.PowerSpinnerView
-                android:id="@+id/spinner"
+
+            <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+                android:id="@+id/countrySpinner"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/black_400"
-                android:gravity="center"
-                android:hint="Japan"
-                android:padding="10dp"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textSize="16sp"
-                app:spinner_arrow_gravity="end"
-                app:spinner_arrow_padding="8dp"
-                app:spinner_divider_color="@color/white_200"
-                app:spinner_divider_show="true"
-                app:spinner_divider_size="0.4dp"
-                app:spinner_item_height="46dp"
-                app:spinner_popup_animation="dropdown"
-                app:spinner_popup_background="@color/black_200"
-                app:spinner_popup_elevation="14dp"
                 app:layout_constraintTop_toBottomOf="@id/countryTxtView"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
                 android:layout_marginHorizontal="16dp"
-                android:layout_marginTop="10dp"/>
+                android:hint="countries"
+                app:startIconDrawable="@drawable/ic_country"
+                android:layout_marginTop="10dp">
+
+                <AutoCompleteTextView
+                    android:id="@+id/countryValue"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:inputType="none"
+                    android:text="Japan"/>
+
+            </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/button"
@@ -136,18 +133,18 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/spinner" />
+                app:layout_constraintTop_toBottomOf="@+id/countrySpinner" />
 
             <TextView
                 android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:text="Already Registered , Sign In !"
                 android:textColor="@color/black"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
-                android:layout_marginTop="10dp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/button" />
         </androidx.constraintlayout.widget.ConstraintLayout>

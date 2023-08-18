@@ -1,17 +1,13 @@
 package com.example.userauthenticationregistration
 
+import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import com.example.userauthenticationregistration.databinding.ActivitySignUpBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.skydoves.powerspinner.IconSpinnerItem
-import com.skydoves.powerspinner.SpinnerAnimation
-import com.skydoves.powerspinner.SpinnerGravity
-import com.skydoves.powerspinner.createPowerSpinnerView
+import java.io.IOException
 
 class SignUpActivity : AppCompatActivity() {
 
@@ -31,10 +27,8 @@ class SignUpActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        binding.spinner.showOrDismiss()
-        binding.spinner.setOnSpinnerItemSelectedListener<IconSpinnerItem> { oldIndex, oldItem, newIndex, newItem ->
-            Toast.makeText(this, newItem.text, Toast.LENGTH_SHORT).show()
-        }
+        val dataString = this.readJsonAsset("countries.json")
+        Toast.makeText(this,dataString,Toast.LENGTH_LONG).show()
         binding.button.setOnClickListener {
             val email = binding.emailEt.text.toString()
             val pass = binding.passET.text.toString()
@@ -63,4 +57,14 @@ class SignUpActivity : AppCompatActivity() {
             }
         }
     }
+}
+
+@Throws(IOException::class)
+fun Context.readJsonAsset(fileName: String): String {
+    val inputStream = assets.open(fileName)
+    val size = inputStream.available()
+    val buffer = ByteArray(size)
+    inputStream.read(buffer)
+    inputStream.close()
+    return String(buffer, Charsets.UTF_8)
 }

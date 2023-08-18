@@ -4,11 +4,8 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContentProviderCompat.requireContext
 import com.example.userauthenticationregistration.databinding.ActivitySignInBinding
 import com.google.firebase.auth.FirebaseAuth
-import com.skydoves.powerspinner.IconSpinnerItem
-import com.skydoves.powerspinner.PowerSpinnerPreference
 
 class SignInActivity : AppCompatActivity() {
 
