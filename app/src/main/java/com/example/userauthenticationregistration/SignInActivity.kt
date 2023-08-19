@@ -2,7 +2,6 @@ package com.example.userauthenticationregistration
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.userauthenticationregistration.databinding.ActivitySignInBinding
 import com.google.firebase.auth.FirebaseAuth
@@ -42,17 +41,15 @@ class SignInActivity : AppCompatActivity() {
 
                 firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
                     if (it.isSuccessful) {
-                        Toast.makeText(this, "You are logged in successfully", Toast.LENGTH_SHORT)
-                            .show()
+                        this.showToast("You are logged in successfully")
                         val intent = Intent(this, MainActivity::class.java)
                         startActivity(intent)
                     } else {
-                        Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                        this.showToast(it.exception.toString())
                     }
                 }
             } else {
-                Toast.makeText(this, "Empty Fields Are not Allowed !!", Toast.LENGTH_SHORT).show()
-
+                this.showToast("Empty Fields Are not Allowed !!")
             }
         }
     }

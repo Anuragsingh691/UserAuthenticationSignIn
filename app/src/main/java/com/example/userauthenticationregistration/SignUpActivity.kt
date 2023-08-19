@@ -1,28 +1,31 @@
 package com.example.userauthenticationregistration
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.userauthenticationregistration.databinding.ActivitySignUpBinding
+import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
-import java.io.IOException
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
 import org.json.JSONArray
 
 class SignUpActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySignUpBinding
     private lateinit var firebaseAuth: FirebaseAuth
+    private lateinit var firebaseDatabaseReference: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseApp.initializeApp(this);
 
         binding = ActivitySignUpBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         firebaseAuth = FirebaseAuth.getInstance()
+        firebaseDatabaseReference = FirebaseDatabase.getInstance().getReference("Users")
 
         binding.textView.setOnClickListener {
             val intent = Intent(this, SignInActivity::class.java)
@@ -48,35 +51,33 @@ class SignUpActivity : AppCompatActivity() {
                     firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
                         if (it.isSuccessful) {
                             val user = User(name = userName, email = email, country = country)
+                            val ref = firebaseAuth.currentUser?.uid?.let { uuid ->
+                                firebaseDatabaseReference
+                                    .child(uuid)
+                            }
 
-                            Toast.makeText(this, "registration successful", Toast.LENGTH_SHORT)
-                                .show()
+                            ref?.setValue(user)
+                                ?.addOnSuccessListener {
+                                    this.showToast("registration successful & data added successfully")
+                                }
+                                ?.addOnFailureListener { exception ->
+                                    this.showToast("registration successful but data didn't get stored with exception $exception")
+                                }
                             val intent = Intent(this, SignInActivity::class.java)
                             startActivity(intent)
                         } else {
-                            Toast.makeText(this, it.exception.toString(), Toast.LENGTH_SHORT).show()
+                            this.showToast("it.exception.toString()")
 
                         }
                     }
                 } else {
-                    Toast.makeText(this, "Password is not matching", Toast.LENGTH_SHORT).show()
+                    this.showToast("Password is not matching")
                 }
             } else {
-                Toast.makeText(this, "Empty Fields Are not Allowed !!", Toast.LENGTH_SHORT).show()
-
+                this.showToast("Empty Fields Are not Allowed !!")
             }
         }
     }
-}
-
-@Throws(IOException::class)
-fun Context.readJsonAsset(fileName: String): String {
-    val inputStream = assets.open(fileName)
-    val size = inputStream.available()
-    val buffer = ByteArray(size)
-    inputStream.read(buffer)
-    inputStream.close()
-    return String(buffer, Charsets.UTF_8)
 }
 
 

@@ -50,6 +50,8 @@ dependencies {
     // firebase dependencies
     implementation("com.google.firebase:firebase-auth-ktx:22.1.1")
     implementation(platform("com.google.firebase:firebase-bom:32.2.2"))
+    implementation("com.google.firebase:firebase-database:20.0.1")
+
 
     // Spinner
     implementation("com.squareup.retrofit2:retrofit:2.6.0")

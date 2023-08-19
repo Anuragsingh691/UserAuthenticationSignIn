@@ -11,6 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@drawable/signup_screen"
+            android:paddingBottom="20dp"
             tools:context=".SignUpActivity">
 
             <com.google.android.material.textfield.TextInputLayout
@@ -122,16 +123,16 @@
 
 
             <com.google.android.material.textfield.TextInputLayout
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:id="@+id/countrySpinner"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/countryTxtView"
-                app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="10dp"
                 android:hint="countries"
-                app:startIconDrawable="@drawable/ic_country"
-                android:layout_marginTop="10dp">
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/countryTxtView"
+                app:startIconDrawable="@drawable/ic_country">
 
                 <AutoCompleteTextView
                     android:id="@+id/countryValue"
@@ -139,7 +140,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:inputType="none"
-                    android:text="Japan"/>
+                    android:text="Japan" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
