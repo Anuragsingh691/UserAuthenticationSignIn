@@ -1,4 +1,4 @@
-package com.example.userauthenticationregistration
+package com.example.userauthenticationregistration.model
 
 data class User(
     val name: String? = null,
