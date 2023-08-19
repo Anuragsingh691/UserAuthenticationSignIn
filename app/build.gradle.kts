@@ -50,10 +50,13 @@ dependencies {
     // firebase dependencies
     implementation("com.google.firebase:firebase-auth-ktx:22.1.1")
     implementation(platform("com.google.firebase:firebase-bom:32.2.2"))
+    implementation("com.google.firebase:firebase-database:20.0.1")
+
 
     // Spinner
-    implementation("com.github.skydoves:powerspinner:1.2.7")
-
+    implementation("com.squareup.retrofit2:retrofit:2.6.0")
+    implementation("com.google.code.gson:gson:2.8.5")
+    implementation("com.squareup.retrofit2:converter-gson:2.5.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
