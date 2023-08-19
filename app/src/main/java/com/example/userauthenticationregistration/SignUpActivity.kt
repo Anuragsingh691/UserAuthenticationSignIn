@@ -39,12 +39,16 @@ class SignUpActivity : AppCompatActivity() {
             val email = binding.emailEt.text.toString()
             val pass = binding.passET.text.toString()
             val confirmPass = binding.confirmPassEt.text.toString()
+            val country = binding.countryValue.text.toString()
+            val userName = binding.userNameEt.text.toString()
 
             if (email.isNotEmpty() && pass.isNotEmpty() && confirmPass.isNotEmpty()) {
                 if (pass == confirmPass) {
 
                     firebaseAuth.createUserWithEmailAndPassword(email, pass).addOnCompleteListener {
                         if (it.isSuccessful) {
+                            val user = User(name = userName, email = email, country = country)
+
                             Toast.makeText(this, "registration successful", Toast.LENGTH_SHORT)
                                 .show()
                             val intent = Intent(this, SignInActivity::class.java)
