@@ -2,6 +2,7 @@ package com.example.userauthenticationregistration.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.userauthenticationregistration.viewModel.SignInViewModel
@@ -38,12 +39,13 @@ class SignInActivity : AppCompatActivity() {
         super.onResume()
 
         signInViewModel.successToastMsg?.observe(this) {
+            binding.progressBar.visibility = View.GONE
             this.showToast(it)
             val intent = Intent(this, MainActivity::class.java)
             this.startActivity(intent)
         }
 
-        signInViewModel.errorToastMsg?.observe(this) {
+        signInViewModel.errorToastMsg.observe(this) {
             this.showToast(it)
         }
 
@@ -66,6 +68,7 @@ class SignInActivity : AppCompatActivity() {
                 this.showToast("please enter a valid email")
 
             } else if (email.isNotEmpty() && pass.isNotEmpty()) {
+                binding.progressBar.visibility = View.VISIBLE
                 signInViewModel.signInUser(email, pass)
             } else {
                 this.showToast("Empty Fields Are not Allowed !!")

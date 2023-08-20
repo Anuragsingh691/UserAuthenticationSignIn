@@ -7,8 +7,8 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class SignUpViewModel : ViewModel() {
-    var successToastMsg: MutableLiveData<String>? = null
-    var errorToastMsg: MutableLiveData<String>? = null
+    var successToastMsg= MutableLiveData<String>()
+    var errorToastMsg= MutableLiveData<String>()
 
     fun signUpUser(
         email: String,
@@ -28,7 +28,7 @@ class SignUpViewModel : ViewModel() {
 
                 ref?.setValue(user)
                     ?.addOnSuccessListener {
-                        successToastMsg?.value = "User Registered successfully"
+                        successToastMsg.value = "User Registered successfully"
                     }
                     ?.addOnFailureListener { exception ->
                         errorToastMsg?.value = "error while registering user $exception"

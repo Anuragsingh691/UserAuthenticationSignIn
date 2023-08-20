@@ -2,6 +2,7 @@ package com.example.userauthenticationregistration.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.ArrayAdapter
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
@@ -42,7 +43,8 @@ class SignUpActivity : AppCompatActivity() {
 
     override fun onResume() {
         super.onResume()
-        signUpViewModel.successToastMsg?.observe(this) {
+        signUpViewModel.successToastMsg.observe(this) {
+            binding.progressBar.visibility = View.GONE
             this.showToast(it)
             this.startActivity(Intent(this, SignInActivity::class.java))
         }
@@ -80,6 +82,7 @@ class SignUpActivity : AppCompatActivity() {
 
             } else if (email.isNotEmpty() && country.isNotEmpty() && pass.isNotEmpty() && confirmPass.isNotEmpty() && pass == confirmPass && userName.isNotEmpty()) {
                 if (pass == confirmPass) {
+                    binding.progressBar.visibility = View.VISIBLE
                     signUpViewModel.signUpUser(email, pass, userName, country)
                 } else {
                     this.showToast("Password is not matching")

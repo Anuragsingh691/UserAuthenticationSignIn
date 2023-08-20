@@ -5,8 +5,8 @@ import androidx.lifecycle.ViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 class SignInViewModel : ViewModel() {
-    var successToastMsg: MutableLiveData<String>? = null
-    var errorToastMsg: MutableLiveData<String>? = null
+    var successToastMsg = MutableLiveData<String>()
+    var errorToastMsg = MutableLiveData<String>()
     fun signInUser(
         email: String,
         pass: String
@@ -14,9 +14,9 @@ class SignInViewModel : ViewModel() {
         val firebaseAuth = FirebaseAuth.getInstance()
         firebaseAuth.signInWithEmailAndPassword(email, pass).addOnCompleteListener {
             if (it.isSuccessful) {
-                successToastMsg?.value = "You are logged in successfully"
+                successToastMsg.value = "You are logged in successfully"
             } else {
-                errorToastMsg?.value = it.exception.toString()
+                errorToastMsg.value = it.exception.toString()
             }
         }
     }

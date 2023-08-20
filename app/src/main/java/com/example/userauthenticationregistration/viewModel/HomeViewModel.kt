@@ -5,37 +5,41 @@ import androidx.lifecycle.ViewModel
 import com.example.userauthenticationregistration.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
+import java.util.Locale
 
 class HomeViewModel : ViewModel() {
     private val firebaseAuth = FirebaseAuth.getInstance()
     private val firebaseDatabaseReference = FirebaseDatabase.getInstance().getReference("Users")
-    val logoutSuccess: MutableLiveData<String>? = null
-    val userStorageError: MutableLiveData<String>? = null
+    val logoutSuccess = MutableLiveData<String>()
+    val userStorageError = MutableLiveData<String>()
+    val currentUser = MutableLiveData<User>()
+
+    init {
+        getLoggedInUser()
+    }
 
     fun logoutUser() {
         firebaseAuth.signOut().let {
-            logoutSuccess?.value = "Logged out successfully"
+            logoutSuccess.value = "Logged out successfully"
         }
     }
 
-    fun getLoggedInUser(): User? {
+    private fun getLoggedInUser() {
         val userId = firebaseAuth.currentUser?.uid
-        var user: User? = null
         userId?.let { id ->
             firebaseDatabaseReference.child(id).get().addOnSuccessListener { data ->
                 if (data.exists()) {
-                    user = User(
-                        name = data.child("name").value.toString(),
+                    currentUser.value = User(
+                        name = data.child("name").value.toString().capitalize(Locale.ROOT),
                         email = data.child("email").value.toString(),
-                        data.child("country").value.toString()
+                        country = data.child("country").value.toString().capitalize(Locale.ROOT)
                     )
                 } else {
-                    userStorageError?.value = "user data doesnt exit , userId $id"
+                    userStorageError.value = "user data doesn't exit , userId $id"
                 }
             }.addOnFailureListener { exception ->
-                userStorageError?.value = "failed due to exception $exception"
+                userStorageError.value = "failed due to exception $exception"
             }
         }
-        return user
     }
 }
