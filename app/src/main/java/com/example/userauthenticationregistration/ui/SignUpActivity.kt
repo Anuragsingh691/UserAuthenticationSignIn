@@ -9,12 +9,12 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.userauthenticationregistration.R
 import com.example.userauthenticationregistration.viewModel.SignUpViewModel
 import com.example.userauthenticationregistration.util.Utils
-import com.example.userauthenticationregistration.createFactory
+import com.example.userauthenticationregistration.util.createFactory
 import com.example.userauthenticationregistration.databinding.ActivitySignUpBinding
-import com.example.userauthenticationregistration.isValidEmail
-import com.example.userauthenticationregistration.isValidPassword
-import com.example.userauthenticationregistration.readJsonAsset
-import com.example.userauthenticationregistration.showToast
+import com.example.userauthenticationregistration.util.isValidEmail
+import com.example.userauthenticationregistration.util.isValidPassword
+import com.example.userauthenticationregistration.util.readJsonAsset
+import com.example.userauthenticationregistration.util.showToast
 import com.google.firebase.FirebaseApp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DatabaseReference

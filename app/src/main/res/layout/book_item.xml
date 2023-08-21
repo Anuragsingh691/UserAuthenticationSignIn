@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="10dp"
+        app:cardElevation="@dimen/margin_start_200"
+        android:background="@color/white"
+        app:cardCornerRadius="@dimen/coin_card_corner_radius">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <include
+                android:id="@+id/bookImageLayout"
+                layout="@layout/image_card_layout"
+                android:layout_width="150dp"
+                android:layout_height="170dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"/>
+
+            <TextView
+                android:id="@+id/bookTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginStart="@dimen/margin_start_200"
+                android:layout_marginTop="@dimen/margin_100"
+                app:layout_constraintStart_toEndOf="@id/bookImageLayout"
+                tools:text="Neon Genesis Evangelion: Shinji Ikari Raising Project"
+                android:fontFamily="@font/basier_circle_semibold"
+                android:textSize="@dimen/text_size_regular_800"
+                android:textColor="@color/black_200"/>
+
+            <TextView
+                android:id="@+id/hits_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/bookTitle"
+                android:layout_marginStart="@dimen/margin_start_200"
+                android:layout_marginTop="@dimen/margin_100"
+                app:layout_constraintStart_toEndOf="@id/bookImageLayout"
+                android:text="@string/hits_text"
+                android:fontFamily="@font/basier_circle_medium"
+                android:textSize="@dimen/text_size_regular_600"
+                android:textColor="@color/dsc_grey"/>
+
+            <ImageView
+                android:id="@+id/ic_bookmark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:src="@drawable/ic_bookmark_empty"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="@dimen/margin_start_200"/>
+
+            <TextView
+                android:id="@+id/hits_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/hits_title"
+                android:layout_marginStart="@dimen/margin_start_200"
+                android:layout_marginTop="@dimen/margin_100"
+                app:layout_constraintStart_toEndOf="@id/bookImageLayout"
+                tools:text="1435"
+                android:fontFamily="@font/basier_circle_medium"
+                android:textSize="@dimen/text_size_regular_600"
+                android:textColor="@color/black_400"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+</layout>

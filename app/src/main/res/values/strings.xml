@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">UserAuthenticationRegistration</string>
+    <string name="greeting">Good Afternoon,\n Anurag</string>
+    <string name="book_store_title">Recommendation</string>
+    <string name="hits_text">Hits :</string>
+    <string name="alias_text">Alias : </string>
+    <string name="updated_on">Updated On : </string>
+    <string name="overview">Overview</string>
+    <string name="sort_by">Sort by :- </string>
+    <string name="title">Title</string>
+    <string name="hits">Hits</string>
+    <string name="favs">favs</string>
+    <string name="lopis_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed finibus, justo et aliquam vestibulum, elit ligula dictum orci, ut lacinia elit tellus eu nunc. Nunc nec neque in leo eleifend feugiat. Aliquam sollicitudin quam a eros consequat, ac scelerisque odio tempus. Sed vestibulum bibendum lacus, sed tempor elit hendrerit a. Maecenas laoreet, nunc sit amet accumsan tincidunt, ligula justo efficitur lectus, et consequat justo ligula at libero. Sed laoreet felis a justo interdum, at iaculis ante interdum. Quisque auctor sapien nec risus efficitur, id volutpat sapien varius. Etiam bibendum bibendum libero nec accumsan. Suspendisse potenti. In hac habitasse platea dictumst. Nulla facilisi. Suspendisse potenti.</string>
 </resources>

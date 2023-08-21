@@ -6,11 +6,11 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.userauthenticationregistration.viewModel.SignInViewModel
-import com.example.userauthenticationregistration.createFactory
+import com.example.userauthenticationregistration.util.createFactory
 import com.example.userauthenticationregistration.databinding.ActivitySignInBinding
-import com.example.userauthenticationregistration.isValidEmail
-import com.example.userauthenticationregistration.isValidPassword
-import com.example.userauthenticationregistration.showToast
+import com.example.userauthenticationregistration.util.isValidEmail
+import com.example.userauthenticationregistration.util.isValidPassword
+import com.example.userauthenticationregistration.util.showToast
 import com.google.firebase.auth.FirebaseAuth
 
 class SignInActivity : AppCompatActivity() {

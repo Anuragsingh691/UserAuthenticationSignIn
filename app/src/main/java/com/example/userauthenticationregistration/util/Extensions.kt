@@ -1,8 +1,11 @@
-package com.example.userauthenticationregistration
+package com.example.userauthenticationregistration.util
 
 import android.content.Context
+import android.content.Intent
 import android.util.Patterns
+import android.view.View
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import java.io.IOException
@@ -36,4 +39,18 @@ fun String.isValidPassword(): Boolean {
 
 fun String.isValidEmail(): Boolean {
     return this.isNotEmpty() && Patterns.EMAIL_ADDRESS.matcher(this).matches()
+}
+
+fun View.onClick(context: Context, destination: AppCompatActivity) {
+    this.setOnClickListener { view ->
+        context.startActivity(Intent(context, destination::class.java))
+    }
+}
+
+fun View.show() {
+    this.visibility = View.VISIBLE
+}
+
+fun View.hide() {
+    this.visibility = View.GONE
 }
